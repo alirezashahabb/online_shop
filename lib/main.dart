@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:online_shop/screens/root/root.dart';
 import 'package:online_shop/them.dart';
 
 void main() {
@@ -12,28 +14,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('fa'), // farsi
+        // Spanish
+      ],
       title: 'online_shop',
-      theme: lightthemeData(),
-      home: const MyHome(),
-    );
-  }
-}
-
-class MyHome extends StatelessWidget {
-  const MyHome({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'سلام',
-          style: TextStyle(
-            fontFamily: 'Vazir',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      theme: lightThemeData(),
+      home: const RootScreen(),
     );
   }
 }
