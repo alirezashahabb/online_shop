@@ -42,10 +42,12 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Text('سلام', style: TextStyle(
-        fontFamily: 'Vazir' , 
-        fontWeight: FontWeight.bold,
-      ),),
+      body: Center(  
+        child: Text('سلام', style: TextStyle(
+          fontFamily: 'Vazir' , 
+          fontWeight: FontWeight.bold,
+        ),),
+      ),
     );
   }
 }
