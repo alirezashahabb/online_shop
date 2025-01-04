@@ -4,7 +4,7 @@ ThemeData lightThemeData() {
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
     colorScheme: ColorScheme.light(
-      primary: AppColors.kRed2,
+      primary: AppColors.kPrimary500,
       onPrimary: Colors.white,
     ),
     fontFamily: 'Vazir',
@@ -12,89 +12,82 @@ ThemeData lightThemeData() {
     textTheme: const TextTheme(
         displayMedium: TextStyle(
           fontSize: 16,
-          color: AppColors.kBlack5,
+          color: AppColors.kGray900,
         ),
         bodyMedium: TextStyle(
           fontSize: 14,
-          color: AppColors.kBlack5,
+          color: AppColors.kGray900,
         ),
         bodySmall: TextStyle(
           fontSize: 12,
-          color: AppColors.kBlack5,
+          color: AppColors.kGray900,
         ),
         labelSmall: TextStyle(
           fontSize: 10,
-          color: AppColors.kGray3,
+          color: AppColors.kGray300,
         )),
   );
 }
 
 class AppColors {
-  // White colors
-  static const kPrimaryColor = Color(0xFFFFFFFF);
-  static const kSecondaryColor = Color(0xFFF4F4F4);
-  static const kTertiaryColor = Color(0xFFEAEAEA);
-  static const kQuaternaryColor = Color(0xFFDFDFDF);
-  static const kQuinaryColor = Color(0xFFD4D4D4);
-
-// Gray colors
-  static const kGray1 = Color(0xFFBFBFBF);
-  static const kGray2 = Color(0xFFA9A9A9);
-  static const kGray3 = Color(0xFF767676);
-  static const kGray4 = Color(0xFF949494);
-  static const kGray5 = Color(0xFF595959);
-
-// Black colors
-  static const kBlack1 = Color(0xFF3B3B3B);
-  static const kBlack2 = Color(0xFF2C2C2C);
-  static const kBlack3 = Color(0xFF1E1E1E);
-  static const kBlack4 = Color(0xFF000000);
-  static const kBlack5 = Color(0xFF0F0F0F);
-
-// Red colors
-  static const kRed1 = Color(0xFFF02424);
-  static const kRed2 = Color(0xFFC01D1D);
-  static const kRed3 = Color(0xFF901616);
-  static const kRed4 = Color(0xFFF35050);
-  static const kRed5 = Color(0xFFF67C7C);
-
-// Blue colors
-  static const kBlue1 = Color(0xFF80BAF7);
-  static const kBlue2 = Color(0xFF56A3F5);
-  static const kBlue3 = Color(0xFF2370C2);
-  static const kBlue4 = Color(0xFF2C8CF2);
-  static const kBlue5 = Color(0xFFABD1FA);
-
-// Green colors
-  static const kGreen1 = Color(0xFFD6F9DC);
-  static const kGreen2 = Color(0xFF29B440);
-  static const kGreen3 = Color(0xFF1F8730);
-  static const kGreen4 = Color(0xFF33E150);
-  static const kGreen5 = Color(0xFFC2F6CA);
-
-// Orange colors
-  static const kOrange1 = Color(0xFFF36234);
-  static const kOrange2 = Color(0xFFF5815D);
-  static const kOrange3 = Color(0xFFFAC0AE);
-  static const kOrange4 = Color(0xFFFDAD51);
-  static const kOrange5 = Color(0xFFCA7A1E);
-
-// Pink colors
-  static const kPink1 = Color(0xFFF8A185);
-  static const kPink2 = Color(0xFFFBD0C2);
-  static const kPink3 = Color(0xFFFABDBD);
-  static const kPink4 = Color(0xFFFDE9E9);
-  static const kPink5 = Color(0xFFFAC0AE);
-
-// Yellow colors
-  static const kYellow1 = Color(0xFFFFF5E9);
-  static const kYellow2 = Color(0xFFFEEFEB);
-  static const kYellow3 = Color(0xFFFFEBD4);
-
-// Mixed colors
-  static const kMixed1 = Color(0xFFEAF3FE);
-  static const kMixed2 = Color(0xFFEBFCED);
-  static const kMixed3 = Color(0xFFADF3B9);
-  static const kMixed4 = Color(0xFFD5E8FC);
-  static const kMixed5 = Color(0xFF85ED96);
+  static const Color kAlert100 = Color(0xfffcd3d3);
+  static const Color kAlert150 = Color(0xfffabdbd);
+  static const Color kAlert200 = Color(0xfff9a7a7);
+  static const Color kAlert300 = Color(0xfff67c7c);
+  static const Color kAlert400 = Color(0xfff35050);
+  static const Color kAlert50 = Color(0xfffde9e9);
+  static const Color kAlert500 = Color(0xfff02424);
+  static const Color kAlert600 = Color(0xffc01d1d);
+  static const Color kAlert700 = Color(0xff901616);
+  static const Color kBlack = Color(0xff000000);
+  static const Color kGray100 = Color(0xffeaeaea);
+  static const Color kGray150 = Color(0xffdfdfdf);
+  static const Color kGray200 = Color(0xffd4d4d4);
+  static const Color kGray300 = Color(0xffbfbfbf);
+  static const Color kGray400 = Color(0xffa9a9a9);
+  static const Color kGray50 = Color(0xfff4f4f4);
+  static const Color kGray500 = Color(0xff949494);
+  static const Color kGray600 = Color(0xff767676);
+  static const Color kGray700 = Color(0xff595959);
+  static const Color kGray800 = Color(0xff3b3b3b);
+  static const Color kGray850 = Color(0xff2c2c2c);
+  static const Color kGray900 = Color(0xff1e1e1e);
+  static const Color kGray950 = Color(0xff0f0f0f);
+  static const Color kInfo100 = Color(0xffd5e8fc);
+  static const Color kInfo150 = Color(0xffc0dcfb);
+  static const Color kInfo200 = Color(0xffabd1fa);
+  static const Color kInfo300 = Color(0xff80baf7);
+  static const Color kInfo400 = Color(0xff56a3f5);
+  static const Color kInfo50 = Color(0xffeaf3fe);
+  static const Color kInfo500 = Color(0xff2c8cf2);
+  static const Color kInfo600 = Color(0xff2370c2);
+  static const Color kInfo700 = Color(0xff1a5491);
+  static const Color kPrimary100 = Color(0xfffde0d6);
+  static const Color kPrimary150 = Color(0xfffbd0c2);
+  static const Color kPrimary200 = Color(0xfffac0ae);
+  static const Color kPrimary300 = Color(0xfff8a185);
+  static const Color kPrimary400 = Color(0xfff5815d);
+  static const Color kPrimary50 = Color(0xfffeefeb);
+  static const Color kPrimary500 = Color(0xfff36234);
+  static const Color kPrimary600 = Color(0xffca512a);
+  static const Color kPrimary700 = Color(0xffa13f20);
+  static const Color kSuccess100 = Color(0xffd6f9dc);
+  static const Color kSuccess150 = Color(0xffc2f6ca);
+  static const Color kSuccess200 = Color(0xffadf3b9);
+  static const Color kSuccess300 = Color(0xff85ed96);
+  static const Color kSuccess400 = Color(0xff5ce773);
+  static const Color kSuccess50 = Color(0xffebfced);
+  static const Color kSuccess500 = Color(0xff33e150);
+  static const Color kSuccess600 = Color(0xff29b440);
+  static const Color kSuccess700 = Color(0xff1f8730);
+  static const Color kWarning100 = Color(0xffffebd4);
+  static const Color kWarning150 = Color(0xfffee0be);
+  static const Color kWarning200 = Color(0xfffed6a8);
+  static const Color kWarning300 = Color(0xfffec27d);
+  static const Color kWarning400 = Color(0xfffdad51);
+  static const Color kWarning50 = Color(0xfffff5e9);
+  static const Color kWarning500 = Color(0xfffd9926);
+  static const Color kWarning600 = Color(0xffca7a1e);
+  static const Color kWarning700 = Color(0xff985c17);
+  static const Color kWhite = Color(0xffffffff);
 }
