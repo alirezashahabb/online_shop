@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/widget/home_slider.dart';
+import 'package:online_shop/widget/product_horizantal.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -47,15 +49,82 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             );
           } else if (state is HomeSuccessState) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  // slider section
-                  HomeSlider(
-                    homeModel: state.homeModel,
-                  ),
-                ],
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  spacing: 20,
+                  children: [
+                    // slider section
+                    HomeSlider(
+                      homeModel: state.homeModel,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'جدیدترین محصولات',
+                          style: themeData.textTheme.bodyMedium!
+                              .copyWith(fontWeight: FontWeight.w700),
+                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'مشاهده همه',
+                                style: themeData.textTheme.bodySmall!.copyWith(
+                                  color: AppColors.kInfo500,
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: AppColors.kInfo500,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    ProductHorizantal(
+                      themeData: themeData,
+                      producs: state.homeModel.news!,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'پربازدیدترین محصولات',
+                          style: themeData.textTheme.bodyMedium!
+                              .copyWith(fontWeight: FontWeight.w700),
+                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'مشاهده همه',
+                                style: themeData.textTheme.bodySmall!.copyWith(
+                                  color: AppColors.kInfo500,
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 16,
+                              color: AppColors.kInfo500,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    ProductHorizantal(
+                      themeData: themeData,
+                      producs: state.homeModel.mostVisited!,
+                    )
+                  ],
+                ),
               ),
             );
           } else if (state is HomeErrorState) {
