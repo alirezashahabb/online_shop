@@ -1,0 +1,105 @@
+class HomeModel {
+  List<Product>? news;
+  List<Slides>? slides;
+  List<Product>? mostVisited;
+
+  HomeModel({this.news, this.slides, this.mostVisited});
+
+  HomeModel.fromJson(Map<String, dynamic> json) {
+    if (json['news'] != null) {
+      news = <Product>[];
+      json['news'].forEach((v) {
+        news!.add(Product.fromJson(v));
+      });
+    }
+    if (json['slides'] != null) {
+      slides = <Slides>[];
+      json['slides'].forEach((v) {
+        slides!.add(Slides.fromJson(v));
+      });
+    }
+    if (json['mostVisited'] != null) {
+      mostVisited = <Product>[];
+      json['mostVisited'].forEach((v) {
+        mostVisited!.add(Product.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (news != null) {
+      data['news'] = news!.map((v) => v.toJson()).toList();
+    }
+    if (slides != null) {
+      data['slides'] = slides!.map((v) => v.toJson()).toList();
+    }
+    if (mostVisited != null) {
+      data['mostVisited'] = mostVisited!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Product {
+  int? id;
+  String? title;
+  num? price;
+  num? discountPrice;
+  bool? hasDiscount;
+  num? discountPercent;
+  String? image;
+
+  Product(
+      {this.id,
+      this.title,
+      this.price,
+      this.discountPrice,
+      this.hasDiscount,
+      this.discountPercent,
+      this.image});
+
+  Product.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    price = json['price'];
+    discountPrice = json['discountPrice']!;
+    hasDiscount = json['hasDiscount'];
+    discountPercent = json['discountPercent'];
+    image = json['image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['price'] = price;
+    data['discountPrice'] = discountPrice;
+    data['hasDiscount'] = hasDiscount;
+    data['discountPercent'] = discountPercent;
+    data['image'] = image;
+    return data;
+  }
+}
+
+class Slides {
+  String? title;
+  String? image;
+  String? url;
+
+  Slides({this.title, this.image, this.url});
+
+  Slides.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    image = json['image'];
+    url = json['url'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['image'] = image;
+    data['url'] = url;
+    return data;
+  }
+}

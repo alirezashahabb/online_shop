@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:online_shop/data/services/home_service.dart';
+import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/root/root.dart';
 import 'package:online_shop/them.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => HomeBloc(
+          HomeService(),
+        ),
+      )
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

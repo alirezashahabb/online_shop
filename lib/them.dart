@@ -2,6 +2,19 @@ import 'package:flutter/material.dart';
 
 ThemeData lightThemeData() {
   return ThemeData(
+    appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        color: AppColors.kGray900,
+        size: 20,
+      ),
+      color: AppColors.kWhite,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        color: AppColors.kGray900,
+        fontSize: 16,
+        fontFamily: "Vazir",
+      ),
+    ),
     scaffoldBackgroundColor: Colors.white,
     colorScheme: ColorScheme.light(
       primary: AppColors.kPrimary500,
