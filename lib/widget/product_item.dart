@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/screens/productDetail/product_detal.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/image_loading_service.dart';
+import 'package:online_shop/utils/navigator.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class ProductItem extends StatelessWidget {
@@ -21,7 +23,11 @@ class ProductItem extends StatelessWidget {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
-            print(items.title);
+            goScreen(
+                context: context,
+                screen: ProductDetailScreen(
+                  products: items,
+                ));
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

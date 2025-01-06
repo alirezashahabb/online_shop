@@ -1,5 +1,7 @@
+import 'package:online_shop/data/model/homw_model.dart';
+
 class ProductModel {
-  List<Products>? products;
+  List<HomeProducts>? products;
   int? page;
   int? totalCount;
   int? totalPages;
@@ -14,9 +16,9 @@ class ProductModel {
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     if (json['products'] != null) {
-      products = <Products>[];
+      products = <HomeProducts>[];
       json['products'].forEach((v) {
-        products!.add(Products.fromJson(v));
+        products!.add(HomeProducts.fromJson(v));
       });
     }
     page = json['page'];

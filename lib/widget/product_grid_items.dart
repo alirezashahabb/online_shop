@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:online_shop/data/model/product_model.dart';
+import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/screens/productDetail/product_detal.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/image_loading_service.dart';
+import 'package:online_shop/utils/navigator.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class ProductGridItems extends StatelessWidget {
-  final Products items;
+  final HomeProducts items;
   final ThemeData themeData;
   const ProductGridItems(
       {super.key, required this.items, required this.themeData});
@@ -16,7 +18,12 @@ class ProductGridItems extends StatelessWidget {
       children: [
         GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () {},
+          onTap: () {
+            goScreen(
+              context: context,
+              screen: ProductDetailScreen(products: items),
+            );
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 10,

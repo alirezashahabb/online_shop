@@ -6,6 +6,7 @@ import 'package:online_shop/data/services/product_service.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/product/PopularBloc/popular_bloc_bloc.dart';
 import 'package:online_shop/screens/product/latestbloc/product_bloc.dart';
+import 'package:online_shop/screens/productDetail/bloc/prodcut_detail_bloc.dart';
 import 'package:online_shop/screens/root/root.dart';
 import 'package:online_shop/them.dart';
 
@@ -24,6 +25,11 @@ void main() {
       ),
       BlocProvider(
         create: (context) => PopularBloc(
+          ProductService(),
+        ),
+      ),
+      BlocProvider(
+        create: (context) => ProductDetailBloc(
           ProductService(),
         ),
       ),
