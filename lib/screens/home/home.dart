@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/product/latest_product_screen.dart';
+import 'package:online_shop/screens/product/popular_product_screen.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/navigator.dart';
 import 'package:online_shop/widget/home_slider.dart';
@@ -109,7 +110,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                goScreen(
+                                  context: context,
+                                  screen: PopularProductScreen(),
+                                );
+                              },
                               child: Text(
                                 'مشاهده همه',
                                 style: themeData.textTheme.bodySmall!.copyWith(

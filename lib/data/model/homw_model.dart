@@ -1,15 +1,15 @@
 class HomeModel {
-  List<Product>? news;
+  List<HomeProducts>? news;
   List<Slides>? slides;
-  List<Product>? mostVisited;
+  List<HomeProducts>? mostVisited;
 
   HomeModel({this.news, this.slides, this.mostVisited});
 
   HomeModel.fromJson(Map<String, dynamic> json) {
     if (json['news'] != null) {
-      news = <Product>[];
+      news = <HomeProducts>[];
       json['news'].forEach((v) {
-        news!.add(Product.fromJson(v));
+        news!.add(HomeProducts.fromJson(v));
       });
     }
     if (json['slides'] != null) {
@@ -19,9 +19,9 @@ class HomeModel {
       });
     }
     if (json['mostVisited'] != null) {
-      mostVisited = <Product>[];
+      mostVisited = <HomeProducts>[];
       json['mostVisited'].forEach((v) {
-        mostVisited!.add(Product.fromJson(v));
+        mostVisited!.add(HomeProducts.fromJson(v));
       });
     }
   }
@@ -41,7 +41,7 @@ class HomeModel {
   }
 }
 
-class Product {
+class HomeProducts {
   int? id;
   String? title;
   num? price;
@@ -50,7 +50,7 @@ class Product {
   num? discountPercent;
   String? image;
 
-  Product(
+  HomeProducts(
       {this.id,
       this.title,
       this.price,
@@ -59,7 +59,7 @@ class Product {
       this.discountPercent,
       this.image});
 
-  Product.fromJson(Map<String, dynamic> json) {
+  HomeProducts.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     price = json['price'];

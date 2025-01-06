@@ -3,6 +3,8 @@ part of 'product_bloc.dart';
 @immutable
 sealed class ProductState {}
 
+final class ProductInitState extends ProductState {}
+
 // Latest Product
 final class ProductLatestLoadingState extends ProductState {}
 
@@ -16,21 +18,4 @@ final class ProductLatestErrorState extends ProductState {
   final String error;
 
   ProductLatestErrorState({required this.error});
-}
-
-// Popular Product
-
-// Latest Product
-final class ProductPopularLoadingState extends ProductState {}
-
-final class ProductPopularSuccessState extends ProductState {
-  final ProductModel productModel;
-
-  ProductPopularSuccessState({required this.productModel});
-}
-
-final class ProductPopularErrorState extends ProductState {
-  final String error;
-
-  ProductPopularErrorState({required this.error});
 }

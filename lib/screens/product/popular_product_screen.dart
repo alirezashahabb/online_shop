@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:online_shop/screens/product/latestbloc/product_bloc.dart';
+import 'package:online_shop/screens/product/PopularBloc/popular_bloc_bloc.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/widget/product_grid_items.dart';
 
-class LatestProductScreen extends StatefulWidget {
-  const LatestProductScreen({super.key});
+class PopularProductScreen extends StatefulWidget {
+  const PopularProductScreen({super.key});
 
   @override
-  State<LatestProductScreen> createState() => _LatestProductScreenState();
+  State<PopularProductScreen> createState() => _PopularProductScreen();
 }
 
-class _LatestProductScreenState extends State<LatestProductScreen> {
+class _PopularProductScreen extends State<PopularProductScreen> {
   @override
   void initState() {
-    BlocProvider.of<ProductLatestBloc>(context).add(
-      ProductLatestInitEvent(),
+    BlocProvider.of<PopularBloc>(context).add(
+      ProductPopularInitEvent(),
     );
     super.initState();
   }
@@ -43,13 +43,13 @@ class _LatestProductScreenState extends State<LatestProductScreen> {
           ],
         ),
       ),
-      body: BlocBuilder<ProductLatestBloc, ProductState>(
-          builder: (context, state) {
-        if (state is ProductLatestLoadingState) {
+      body:
+          BlocBuilder<PopularBloc, PopularBlocState>(builder: (context, state) {
+        if (state is PopularProductLoadingSate) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is ProductLatestSuccessState) {
+        } else if (state is PopularProductSuccessSate) {
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             width: double.infinity,
@@ -58,7 +58,7 @@ class _LatestProductScreenState extends State<LatestProductScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'جدیدترین محصولات',
+                  'پربازدید ترین محصولات',
                   style: themeData.textTheme.bodyLarge!.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -83,7 +83,7 @@ class _LatestProductScreenState extends State<LatestProductScreen> {
               ],
             ),
           );
-        } else if (state is ProductLatestErrorState) {
+        } else if (state is PopularProductErrorSate) {
           return Center(
             child: Text(state.error),
           );

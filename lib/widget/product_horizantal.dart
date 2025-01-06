@@ -3,7 +3,7 @@ import 'package:online_shop/data/model/homw_model.dart';
 import 'package:online_shop/widget/product_item.dart';
 
 class ProductHorizantal extends StatelessWidget {
-  final List<Product> producs;
+  final List<HomeProducts> producs;
   const ProductHorizantal({
     super.key,
     required this.themeData,

@@ -4,5 +4,3 @@ part of 'product_bloc.dart';
 sealed class ProductEvent {}
 
 class ProductLatestInitEvent extends ProductEvent {}
-
-class ProductPopularInitEvent extends ProductEvent {}

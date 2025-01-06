@@ -6,9 +6,9 @@ import 'package:online_shop/data/services/product_service.dart';
 part 'product_event.dart';
 part 'product_state.dart';
 
-class ProductBloc extends Bloc<ProductEvent, ProductState> {
+class ProductLatestBloc extends Bloc<ProductEvent, ProductState> {
   final ProductService productService;
-  ProductBloc(this.productService) : super(ProductLatestLoadingState()) {
+  ProductLatestBloc(this.productService) : super(ProductLatestLoadingState()) {
     on<ProductEvent>(
       (event, emit) async {
         // product latest
@@ -24,17 +24,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           }
         }
         // product latest
-        if (event is ProductPopularInitEvent) {
-          emit(ProductPopularLoadingState());
-          try {
-            var response = await productService.getPopularProduct();
-            emit(ProductPopularSuccessState(productModel: response));
-          } catch (e) {
-            emit(
-              ProductPopularErrorState(error: 'خطانامشخص'),
-            );
-          }
-        }
       },
     );
   }
