@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:online_shop/data/services/home_service.dart';
+import 'package:online_shop/data/services/product_service.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
+import 'package:online_shop/screens/product/bloc/product_bloc.dart';
 import 'package:online_shop/screens/root/root.dart';
 import 'package:online_shop/them.dart';
 
@@ -13,7 +15,12 @@ void main() {
         create: (context) => HomeBloc(
           HomeService(),
         ),
-      )
+      ),
+      BlocProvider(
+        create: (context) => ProductBloc(
+          ProductService(),
+        ),
+      ),
     ],
     child: MyApp(),
   ));
