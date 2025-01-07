@@ -23,6 +23,33 @@ ThemeData lightThemeData() {
           width: 1,
         ),
       ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: BorderSide(
+          color: AppColors.kAlert500,
+          width: 0.5,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: BorderSide(
+          color: AppColors.kAlert500,
+          width: 1,
+        ),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+          minimumSize: Size(64, 45),
+          textStyle: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Vazir',
+            fontSize: 14,
+          ),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          )),
     ),
     useMaterial3: false,
     appBarTheme: AppBarTheme(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_shop/data/model/product_detail_model.dart';
+import 'package:online_shop/screens/comment/comment.dart';
 import 'package:online_shop/them.dart';
+import 'package:online_shop/utils/navigator.dart';
 
 class ProductComment extends StatelessWidget {
   final ProductDetailModel product;
@@ -25,7 +27,12 @@ class ProductComment extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                goScreen(
+                  context: context,
+                  screen: CommentScreen(),
+                );
+              },
               child: Text(
                 'ثبت نظر',
                 style: themeData.textTheme.bodyMedium!.copyWith(
