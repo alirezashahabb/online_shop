@@ -8,7 +8,7 @@ part 'prodcut_detail_state.dart';
 
 class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
   final ProductService productService;
-  ProductDetailBloc(this.productService) : super(ProductDetailInitial()) {
+  ProductDetailBloc(this.productService) : super(ProductDetailLoadingState()) {
     on<ProductDetailEvent>((event, emit) async {
       if (event is ProductDetailEventInit) {
         emit(ProductDetailLoadingState());

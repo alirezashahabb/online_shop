@@ -2,6 +2,29 @@ import 'package:flutter/material.dart';
 
 ThemeData lightThemeData() {
   return ThemeData(
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: TextStyle(
+        fontSize: 14,
+      ),
+      contentPadding: EdgeInsets.all(
+        12,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: BorderSide(
+          color: AppColors.kGray300,
+          width: 0.5,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: BorderSide(
+          color: AppColors.kPrimary500,
+          width: 1,
+        ),
+      ),
+    ),
+    useMaterial3: false,
     appBarTheme: AppBarTheme(
       iconTheme: IconThemeData(
         color: AppColors.kGray900,
