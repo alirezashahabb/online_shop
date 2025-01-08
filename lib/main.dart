@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:online_shop/data/services/auth_service.dart';
 import 'package:online_shop/data/services/home_service.dart';
 import 'package:online_shop/data/services/product_service.dart';
 import 'package:online_shop/screens/auth/auth_scren.dart';
+import 'package:online_shop/screens/auth/bloc/auth_bloc.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/product/PopularBloc/popular_bloc_bloc.dart';
 import 'package:online_shop/screens/product/latestbloc/product_bloc.dart';
 import 'package:online_shop/screens/productDetail/bloc/prodcut_detail_bloc.dart';
 import 'package:online_shop/them.dart';
+import 'package:online_shop/utils/sahre_pref_constant.dart';
+import 'package:online_shop/utils/share_pref_manger.dart';
+
+ValueNotifier<bool> isLogin = ValueNotifier(false);
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized;
+  isLogin.value =
+      SharedPreferenceManger().getString(SharedPreferencesConstants.token) !=
+          null;
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
@@ -31,6 +41,11 @@ void main() {
       BlocProvider(
         create: (context) => ProductDetailBloc(
           ProductService(),
+        ),
+      ),
+      BlocProvider(
+        create: (context) => AuthBloc(
+          AuthService(),
         ),
       ),
     ],

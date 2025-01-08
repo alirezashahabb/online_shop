@@ -1,7 +1,11 @@
+import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:online_shop/data/model/auth_model.dart';
+import 'package:online_shop/screens/auth/bloc/auth_bloc.dart';
 import 'package:online_shop/them.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -30,17 +34,54 @@ class _AuthScreenState extends State<AuthScreen> {
           16,
           20,
         ),
-        child: ElevatedButton(
-            onPressed: () {
-              if (FormKey.currentState!.validate()) {
-                print('1');
-              } else {
-                print('2');
-              }
-            },
-            child: groupValue == 0
-                ? Text('ورود به وسام شاپ')
-                : Text('ثبت‌نام در وسام شاپ')),
+        child: BlocConsumer<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is AuthLoginSuccess) {
+              CherryToast.success(
+                title: Text('به وسام شاپ خوش آمدید',
+                    style: themeData.textTheme.bodyMedium),
+              ).show(context);
+            }
+            if (state is AuthSignUpSuccess) {
+              CherryToast.success(
+                title: Text('شما با موفقیت ثبت نام شدید',
+                    style: themeData.textTheme.bodyMedium),
+              ).show(context);
+            }
+          },
+          builder: (context, state) {
+            return ElevatedButton(
+              onPressed: state is AuthLoginLoadingState ||
+                      state is AuthSignUpLoadingState
+                  ? null
+                  : () {
+                      if (FormKey.currentState!.validate()) {
+                        AuthModel authModel = AuthModel(
+                          fullName: fullNameController.text,
+                          phoneNumber: phoneController.text,
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                        //Login
+                        if (groupValue == 0) {
+                          BlocProvider.of<AuthBloc>(context).add(
+                            AuthLoginEvent(authModel: authModel),
+                          );
+                        } else {
+                          BlocProvider.of<AuthBloc>(context).add(
+                            AuthSignUpEvent(authModel: authModel),
+                          );
+                        }
+                      }
+                    },
+              child: state is AuthLoginLoadingState ||
+                      state is AuthSignUpLoadingState
+                  ? CircularProgressIndicator()
+                  : Text(
+                      groupValue == 0 ? 'ورود در وسام' : 'ثبت‌نام در وسام شاپ'),
+            );
+          },
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
