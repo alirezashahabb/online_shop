@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/productDetail/bloc/prodcut_detail_bloc.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/widget/prodoct_detail_descreption.dart';
@@ -96,12 +97,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            height: 75,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text('افزودن به سبد خرید'),
-                            ),
+                          ValueListenableBuilder(
+                            valueListenable: isLogin,
+                            builder: (context, value, child) {
+                              return SizedBox(
+                                height: 75,
+                                child: ElevatedButton(
+                                  onPressed: value ? () {} : null,
+                                  child: Text('افزودن به سبد خرید'),
+                                ),
+                              );
+                            },
                           ),
                           Column(
                             children: [

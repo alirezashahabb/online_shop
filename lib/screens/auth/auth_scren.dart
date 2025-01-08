@@ -21,12 +21,15 @@ class _AuthScreenState extends State<AuthScreen> {
   bool isNotVisiblePassword = true;
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController =
+      TextEditingController(text: 'shehabalireza@gmail.com');
+  final TextEditingController passwordController =
+      TextEditingController(text: '123456');
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     return Scaffold(
+      appBar: AppBar(),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(
           16,

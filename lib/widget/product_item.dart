@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/productDetail/product_detal.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/image_loading_service.dart';
@@ -75,16 +76,24 @@ class ProductItem extends StatelessWidget {
                             ),
                     ],
                   ),
-                  CircleAvatar(
-                    backgroundColor: AppColors.kPrimary500,
-                    radius: 18,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.add,
-                        size: 18,
-                      ),
-                    ),
+                  ValueListenableBuilder(
+                    valueListenable: isLogin,
+                    builder: (context, value, child) {
+                      return value
+                          ? CircleAvatar(
+                              backgroundColor: AppColors.kPrimary500,
+                              radius: 18,
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.add,
+                                  color: AppColors.kWhite,
+                                  size: 18,
+                                ),
+                              ),
+                            )
+                          : SizedBox();
+                    },
                   )
                 ],
               )

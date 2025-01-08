@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_shop/data/model/product_detail_model.dart';
+import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/comment/comment.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/navigator.dart';
@@ -16,6 +17,7 @@ class ProductComment extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     return Column(
+      spacing: 20,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -26,19 +28,26 @@ class ProductComment extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            TextButton(
-              onPressed: () {
-                goScreen(
-                  context: context,
-                  screen: CommentScreen(),
-                );
+            ValueListenableBuilder(
+              valueListenable: isLogin,
+              builder: (context, value, child) {
+                return value
+                    ? TextButton(
+                        onPressed: () {
+                          goScreen(
+                            context: context,
+                            screen: CommentScreen(),
+                          );
+                        },
+                        child: Text(
+                          'ثبت نظر',
+                          style: themeData.textTheme.bodyMedium!.copyWith(
+                            color: AppColors.kInfo400,
+                          ),
+                        ),
+                      )
+                    : SizedBox();
               },
-              child: Text(
-                'ثبت نظر',
-                style: themeData.textTheme.bodyMedium!.copyWith(
-                  color: AppColors.kInfo400,
-                ),
-              ),
             )
           ],
         ),
