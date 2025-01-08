@@ -4,23 +4,23 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:online_shop/data/services/auth_service.dart';
 import 'package:online_shop/data/services/home_service.dart';
 import 'package:online_shop/data/services/product_service.dart';
-import 'package:online_shop/screens/auth/auth_scren.dart';
 import 'package:online_shop/screens/auth/bloc/auth_bloc.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/product/PopularBloc/popular_bloc_bloc.dart';
 import 'package:online_shop/screens/product/latestbloc/product_bloc.dart';
 import 'package:online_shop/screens/productDetail/bloc/prodcut_detail_bloc.dart';
+import 'package:online_shop/screens/root/root.dart';
 import 'package:online_shop/them.dart';
-import 'package:online_shop/utils/sahre_pref_constant.dart';
-import 'package:online_shop/utils/share_pref_manger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+late final SharedPreferences prefs;
 
 ValueNotifier<bool> isLogin = ValueNotifier(false);
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized;
-  isLogin.value =
-      SharedPreferenceManger().getString(SharedPreferencesConstants.token) !=
-          null;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
+  isLogin.value = prefs.getString('token') != null;
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
       ],
       title: 'online_shop',
       theme: lightThemeData(),
-      home: const AuthScreen(),
+      home: const RootScreen(),
     );
   }
 }

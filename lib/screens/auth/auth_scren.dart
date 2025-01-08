@@ -37,9 +37,13 @@ class _AuthScreenState extends State<AuthScreen> {
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is AuthLoginSuccess) {
+              Navigator.of(context).pop();
               CherryToast.success(
-                title: Text('به وسام شاپ خوش آمدید',
-                    style: themeData.textTheme.bodyMedium),
+                toastDuration: Duration(seconds: 2),
+                title: Text(
+                  'به وسام شاپ خوش آمدید',
+                  style: themeData.textTheme.bodyMedium,
+                ),
               ).show(context);
             }
             if (state is AuthSignUpSuccess) {

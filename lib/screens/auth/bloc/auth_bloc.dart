@@ -23,8 +23,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           try {
             var response = await authService.login(event.authModel);
             if (response.accessToken != null) {
+              // await prefs.setString('token', response.accessToken!);
               SharedPreferenceManger().saveString(
-                  SharedPreferencesConstants.token, response.accessToken!);
+                SharedPreferencesConstants.token,
+                response.accessToken!,
+              );
               isLogin.value = true;
             }
 
