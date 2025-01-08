@@ -22,6 +22,7 @@ class ProductGridItems extends StatelessWidget {
             goScreen(
               context: context,
               screen: ProductDetailScreen(products: items),
+              fullScreen: true,
             );
           },
           child: Column(

@@ -12,6 +12,12 @@ class RootScreen extends StatefulWidget {
 
 int _selctedIndex = 0;
 
+final GlobalKey<NavigatorState> homeKey = GlobalKey();
+final GlobalKey<NavigatorState> basketKey = GlobalKey();
+final GlobalKey<NavigatorState> profileKey = GlobalKey();
+
+Widget selectedScreen = HomeScreen();
+
 class _RootScreenState extends State<RootScreen> {
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,6 @@ class _RootScreenState extends State<RootScreen> {
         onTap: (value) {
           setState(() {
             _selctedIndex = value;
-            print(value);
           });
         },
         type: BottomNavigationBarType.fixed,
@@ -42,16 +47,29 @@ class _RootScreenState extends State<RootScreen> {
           ),
         ],
       ),
-      body: IndexedStack(
-        index: _selctedIndex,
-        children: screens,
-      ),
+      body: IndexedStack(index: _selctedIndex, children: [
+        Navigator(
+          key: homeKey,
+          onGenerateRoute: (settings) => MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+            settings: settings,
+          ),
+        ),
+        Navigator(
+          key: basketKey,
+          onGenerateRoute: (settings) => MaterialPageRoute(
+            builder: (context) => BasketScreen(),
+            settings: settings,
+          ),
+        ),
+        Navigator(
+          key: profileKey,
+          onGenerateRoute: (settings) => MaterialPageRoute(
+            builder: (context) => ProfileScreen(),
+            settings: settings,
+          ),
+        ),
+      ]),
     );
   }
 }
-
-List<Widget> screens = [
-  HomeScreen(),
-  BasketScreen(),
-  ProfileScreen(),
-];

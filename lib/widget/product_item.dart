@@ -25,6 +25,7 @@ class ProductItem extends StatelessWidget {
           behavior: HitTestBehavior.opaque,
           onTap: () {
             goScreen(
+                fullScreen: true,
                 context: context,
                 screen: ProductDetailScreen(
                   products: items,
