@@ -36,7 +36,9 @@ class ProductComment extends StatelessWidget {
                         onPressed: () {
                           goScreen(
                             context: context,
-                            screen: CommentScreen(),
+                            screen: CommentScreen(
+                              productId: product.id!,
+                            ),
                           );
                         },
                         child: Text(

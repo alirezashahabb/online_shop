@@ -5,6 +5,7 @@ import 'package:online_shop/data/services/auth_service.dart';
 import 'package:online_shop/data/services/home_service.dart';
 import 'package:online_shop/data/services/product_service.dart';
 import 'package:online_shop/screens/auth/bloc/auth_bloc.dart';
+import 'package:online_shop/screens/comment/bloc/comment_bloc.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/product/PopularBloc/popular_bloc_bloc.dart';
 import 'package:online_shop/screens/product/latestbloc/product_bloc.dart';
@@ -46,6 +47,11 @@ void main() async {
       BlocProvider(
         create: (context) => AuthBloc(
           AuthService(),
+        ),
+      ),
+      BlocProvider(
+        create: (context) => CommentBloc(
+          ProductService(),
         ),
       ),
     ],

@@ -18,4 +18,11 @@ class ProductService {
     Response response = await httpClient.get('products/$id');
     return ProductDetailModel.fromJson(response.data);
   }
+
+  Future<void> sendProductComment(Comments comment) async {
+    await httpClient.post(
+      'comments',
+      data: comment.toJson(),
+    );
+  }
 }

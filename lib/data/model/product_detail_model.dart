@@ -104,13 +104,9 @@ class Comments {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
     data['subject'] = subject;
     data['text'] = text;
-    data['userFullName'] = userFullName;
-    data['userEmail'] = userEmail;
     data['productId'] = productId;
-    data['createDate'] = createDate;
     return data;
   }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:online_shop/data/model/product_detail_model.dart';
+import 'package:online_shop/screens/comment/bloc/comment_bloc.dart';
 
 class CommentScreen extends StatefulWidget {
-  const CommentScreen({super.key});
+  final int productId;
+  const CommentScreen({super.key, required this.productId});
 
   @override
   State<CommentScreen> createState() => _CommentScreenState();
@@ -10,6 +14,8 @@ class CommentScreen extends StatefulWidget {
 
 class _CommentScreenState extends State<CommentScreen> {
   final FormKey = GlobalKey<FormState>();
+  final TextEditingController textController = TextEditingController();
+  final TextEditingController subjectController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +30,13 @@ class _CommentScreenState extends State<CommentScreen> {
         child: ElevatedButton(
           onPressed: () {
             if (FormKey.currentState!.validate()) {
-              print('1');
-            } else {
-              print('2');
+              BlocProvider.of<CommentBloc>(context).add(CommentSendEvent(
+                  comments: Comments(
+                      subject: subjectController.text,
+                      id: widget.productId,
+                      text: textController.text)));
+
+              print('salam');
             }
           },
           child: Text(
@@ -55,9 +65,10 @@ class _CommentScreenState extends State<CommentScreen> {
                   height: 200,
                 ),
                 TextFormField(
+                  controller: subjectController,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'وارد کردن نظر الزامی هست';
+                      return 'وارد کردن عنوان الزامی هست';
                     }
                     return null;
                   },
@@ -68,6 +79,7 @@ class _CommentScreenState extends State<CommentScreen> {
                   ),
                 ),
                 TextFormField(
+                  controller: textController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'وارد کردن دیدگاه الزامی هست';
