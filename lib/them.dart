@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 
 ThemeData lightThemeData() {
   return ThemeData(
+    listTileTheme: ListTileThemeData(
+      minLeadingWidth: 10,
+      iconColor: AppColors.kGray900,
+      contentPadding: EdgeInsets.zero,
+      titleTextStyle: TextStyle(
+        color: AppColors.kGray900,
+        fontSize: 12,
+        fontFamily: 'Vazir',
+      ),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: TextStyle(
         fontSize: 14,
