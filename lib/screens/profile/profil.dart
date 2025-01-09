@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/guest_screen.dart';
-import 'package:online_shop/utils/sahre_pref_constant.dart';
-import 'package:online_shop/utils/share_pref_manger.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -28,9 +26,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Text('User'),
                 ElevatedButton(
-                    onPressed: () {
-                      SharedPreferenceManger()
-                          .remove(SharedPreferencesConstants.token);
+                    onPressed: () async {
+                      await prefs.remove('token');
                       isLogin.value = false;
                     },
                     child: Text('LogOut'))

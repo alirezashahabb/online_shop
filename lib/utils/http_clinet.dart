@@ -44,7 +44,7 @@ Dio httpClient = Dio(
     },
     onRequest: (options, handler) {
       String? userToke = prefs.getString('token');
-      print('user toke $userToke');
+
       if (userToke != null && isLogin.value) {
         options.headers['Authorization'] = 'Bearer $userToke';
       }
