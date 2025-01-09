@@ -17,6 +17,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 late final SharedPreferences prefs;
 
 ValueNotifier<bool> isLogin = ValueNotifier(false);
+// set  global context when is no exist
+final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,6 +68,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      key: navigatorKey,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
