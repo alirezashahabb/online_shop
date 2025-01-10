@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/guest_screen.dart';
+import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/them.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -37,9 +38,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: AppColors.kGray700,
                     ),
                   ),
-                  Text('علیرضا شهاب'),
                   Text(
-                    '09916924158',
+                    currentUser!.fullName!,
+                  ),
+                  Text(
+                    currentUser!.phoneNumber!,
                     style: themeData.textTheme.bodySmall,
                   ),
                   ListTileSection(
@@ -69,6 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onPressed: () async {
                             await prefs.remove('token');
                             isLogin.value = false;
+                            currentUser = null;
                           },
                           child: Icon(
                             Icons.exit_to_app_outlined,

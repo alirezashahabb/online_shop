@@ -10,7 +10,7 @@ import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/product/PopularBloc/popular_bloc_bloc.dart';
 import 'package:online_shop/screens/product/latestbloc/product_bloc.dart';
 import 'package:online_shop/screens/productDetail/bloc/prodcut_detail_bloc.dart';
-import 'package:online_shop/screens/root/root.dart';
+import 'package:online_shop/screens/splash_screen.dart';
 import 'package:online_shop/them.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,6 +49,7 @@ void main() async {
       BlocProvider(
         create: (context) => AuthBloc(
           AuthService(),
+          HomeService(),
         ),
       ),
       BlocProvider(
@@ -81,7 +82,7 @@ class MyApp extends StatelessWidget {
       ],
       title: 'online_shop',
       theme: lightThemeData(),
-      home: const RootScreen(),
+      home: const SplashScreen(),
     );
   }
 }

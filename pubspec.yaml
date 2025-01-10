@@ -47,6 +47,7 @@ dependencies:
   read_more_text: ^0.0.5
   cherry_toast: ^1.11.0
   shared_preferences: ^2.3.5
+  connectivity_plus: ^6.1.1
   
   
 

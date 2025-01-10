@@ -1,10 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/data/model/uder_model.dart';
 import 'package:online_shop/data/services/home_service.dart';
+import 'package:online_shop/main.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
+
+UserModel? currentUser;
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeService homeService;
@@ -14,6 +18,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         try {
           emit(HomeLoadingState());
           var respnse = await homeService.getGeneralInfo();
+          if (isLogin.value) {
+            currentUser = await homeService.getUserInfo();
+          }
           emit(
             HomeSuccessState(homeModel: respnse),
           );

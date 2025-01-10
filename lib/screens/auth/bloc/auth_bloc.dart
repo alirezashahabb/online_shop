@@ -2,15 +2,18 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:online_shop/data/model/auth_model.dart';
 import 'package:online_shop/data/services/auth_service.dart';
+import 'package:online_shop/data/services/home_service.dart';
 import 'package:online_shop/main.dart';
+import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthService authService;
+  final HomeService homeService;
 
-  AuthBloc(this.authService) : super(AuthInitial()) {
+  AuthBloc(this.authService, this.homeService) : super(AuthInitial()) {
     on<AuthEvent>(
       (event, emit) async {
         // login
@@ -23,6 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             if (response.accessToken != null) {
               // await prefs.setString('token', response.accessToken!);
               await prefs.setString('token', response.accessToken!);
+              currentUser = await homeService.getUserInfo();
               isLogin.value = true;
             }
 
