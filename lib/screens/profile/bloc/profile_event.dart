@@ -4,3 +4,5 @@ part of 'profile_bloc.dart';
 sealed class ProfileEvent {}
 
 class UserCommentInitEvent extends ProfileEvent {}
+
+class UserPaymentInitEvent extends ProfileEvent {}

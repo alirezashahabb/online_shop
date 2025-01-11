@@ -3,6 +3,7 @@ import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/guest_screen.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/profile/user_comment.dart';
+import 'package:online_shop/screens/profile/user_peyment_screen.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/navigator.dart';
 
@@ -67,7 +68,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ListTileSection(
                     title: 'پرداخت‌های من',
                     icone: Icon(Icons.payment_outlined),
-                    onTap: () {},
+                    onTap: () {
+                      goScreen(
+                        context: context,
+                        screen: UserPaymentScreen(),
+                      );
+                    },
                   ),
                   Spacer(),
                   Padding(
