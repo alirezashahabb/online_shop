@@ -1,3 +1,4 @@
+import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_shop/data/local/favariot_product_manager.dart';
@@ -113,6 +114,13 @@ class ProductItem extends StatelessWidget {
                 if (FavoriteProductManager.isInBox(items)) {
                   await FavoriteProductManager.deletedProducts(items);
                 } else {
+                  CherryToast.success(
+                    toastDuration: Duration(seconds: 2),
+                    title: Text(
+                      'محصول با موفقیت به لیست مورد علاقه ها اضافه شد',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ).show(context);
                   await FavoriteProductManager.addProduct(items);
                 }
               },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/guest_screen.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
+import 'package:online_shop/screens/profile/favariot_screen.dart';
 import 'package:online_shop/screens/profile/user_comment.dart';
 import 'package:online_shop/screens/profile/user_peyment_screen.dart';
 import 'package:online_shop/them.dart';
@@ -62,7 +63,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ListTileSection(
                     title: 'لیست موردعلاقه‌ها',
                     icone: Icon(Icons.favorite_border_outlined),
-                    onTap: () {},
+                    onTap: () {
+                      goScreen(
+                        context: context,
+                        screen: FavoriteScreen(),
+                      );
+                    },
                   ),
                   Divider(),
                   ListTileSection(
