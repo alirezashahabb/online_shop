@@ -3,8 +3,12 @@ part of 'basket_bloc.dart';
 @immutable
 sealed class BasketEvent {}
 
-class BasketItemInit extends BasketEvent {
+class BasketItemInitEvent extends BasketEvent {
   final int productId;
 
-  BasketItemInit({required this.productId});
+  BasketItemInitEvent({required this.productId});
 }
+
+// Get Basket Items
+
+class GetBasketInitEvent extends BasketEvent {}

@@ -127,7 +127,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       ? () {
                                           BlocProvider.of<BasketBloc>(context)
                                               .add(
-                                            BasketItemInit(
+                                            BasketItemInitEvent(
                                               productId: widget.products.id!,
                                             ),
                                           );

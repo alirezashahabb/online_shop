@@ -4,7 +4,7 @@ import 'package:online_shop/data/model/payment_model.dart';
 import 'package:online_shop/utils/http_clinet.dart';
 
 class BasketService {
-  Future<BasketModel> getAllBasket(BasketModel basket) async {
+  Future<BasketModel> getAllBasket() async {
     Response response = await httpClient.get('shopcarts');
 
     return BasketModel.fromJson(response.data);

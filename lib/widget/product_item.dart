@@ -92,7 +92,7 @@ class ProductItem extends StatelessWidget {
                               child: IconButton(
                                 onPressed: () {
                                   BlocProvider.of<BasketBloc>(context).add(
-                                    BasketItemInit(productId: items.id!),
+                                    BasketItemInitEvent(productId: items.id!),
                                   );
                                 },
                                 icon: Icon(

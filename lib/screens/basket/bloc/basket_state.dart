@@ -16,3 +16,22 @@ class BasketErrorState extends BasketState {
     required this.error,
   });
 }
+
+// Get Basket Items
+class GetBasketLoading extends BasketState {}
+
+class GetBasketSuccessState extends BasketState {
+  final BasketModel basketModel;
+
+  GetBasketSuccessState({
+    required this.basketModel,
+  });
+}
+
+class GetBasketErrorState extends BasketState {
+  final String error;
+
+  GetBasketErrorState({
+    required this.error,
+  });
+}

@@ -36,7 +36,7 @@ class BasketModel {
 
 class BasketProductItems {
   int? count;
-  int? fee;
+  num? fee;
   num? price;
   num? discountPercent;
   num? discountPrice;
