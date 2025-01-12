@@ -1,3 +1,7 @@
+import 'package:hive/hive.dart';
+
+part 'home_model.g.dart';
+
 class HomeModel {
   List<HomeProducts>? news;
   List<Slides>? slides;
@@ -41,13 +45,21 @@ class HomeModel {
   }
 }
 
-class HomeProducts {
+@HiveType(typeId: 0)
+class HomeProducts extends HiveObject {
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? title;
+  @HiveField(2)
   num? price;
+  @HiveField(3)
   num? discountPrice;
+  @HiveField(4)
   bool? hasDiscount;
+  @HiveField(5)
   num? discountPercent;
+  @HiveField(6)
   String? image;
 
   HomeProducts(

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/data/model/uder_model.dart';
 import 'package:online_shop/data/services/home_service.dart';
 import 'package:online_shop/main.dart';

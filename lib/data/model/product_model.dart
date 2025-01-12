@@ -1,4 +1,4 @@
-import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/data/model/home_model.dart';
 
 class ProductModel {
   List<HomeProducts>? products;

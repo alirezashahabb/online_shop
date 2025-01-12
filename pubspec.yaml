@@ -49,6 +49,9 @@ dependencies:
   shared_preferences: ^2.3.5
   connectivity_plus: ^6.1.1
   shamsi_date: ^1.0.4
+  hive: ^2.2.3
+  hive_generator: ^2.0.1
+  hive_flutter: ^1.1.0
   
   
 
@@ -62,6 +65,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.14
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/screens/productDetail/product_detal.dart';
 import 'package:online_shop/screens/profile/bloc/profile_bloc.dart';
 import 'package:online_shop/them.dart';

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/data/services/auth_service.dart';
 import 'package:online_shop/data/services/home_service.dart';
 import 'package:online_shop/data/services/product_service.dart';
@@ -24,6 +26,11 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(HomeProductsAdapter());
+  await Hive.openBox<HomeProducts>('favorite_products');
+
   prefs = await SharedPreferences.getInstance();
   isLogin.value = prefs.getString('token') != null;
   runApp(MultiBlocProvider(

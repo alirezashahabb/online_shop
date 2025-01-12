@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_shop/data/model/homw_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:online_shop/data/local/favariot_product_manager.dart';
+import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/productDetail/bloc/prodcut_detail_bloc.dart';
 import 'package:online_shop/them.dart';
@@ -33,12 +35,29 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         appBar: AppBar(
           title: Text('جزئیات محصول'),
           actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.favorite,
-                color: AppColors.kAlert500,
-              ),
+            ValueListenableBuilder(
+              valueListenable:
+                  FavoriteProductManager.favoriteProductBox.listenable(),
+              builder: (context, value, child) {
+                return IconButton(
+                  onPressed: () async {
+                    if (FavoriteProductManager.isInBox(widget.products)) {
+                      FavoriteProductManager.deletedProducts(widget.products);
+                    } else {
+                      FavoriteProductManager.addProduct(widget.products);
+                    }
+                  },
+                  icon: Icon(
+                    FavoriteProductManager.isInBox(widget.products)
+                        ? Icons.favorite
+                        : Icons.favorite_outline_sharp,
+                    size: 20,
+                    color: FavoriteProductManager.isInBox(widget.products)
+                        ? AppColors.kAlert500
+                        : AppColors.kGray800,
+                  ),
+                );
+              },
             )
           ],
         ),

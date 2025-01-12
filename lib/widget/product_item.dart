@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_shop/data/model/homw_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:online_shop/data/local/favariot_product_manager.dart';
+import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/productDetail/product_detal.dart';
 import 'package:online_shop/them.dart';
@@ -101,22 +103,45 @@ class ProductItem extends StatelessWidget {
             ],
           ),
         ),
-        GestureDetector(
-          onTap: () {},
-          behavior: HitTestBehavior.opaque,
-          child: Container(
-            height: 35,
-            width: 35,
-            decoration: BoxDecoration(
-              color: AppColors.kWhite,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                    color: AppColors.kGray100, blurRadius: 1, spreadRadius: 1)
-              ],
-            ),
-            child: Icon(Icons.favorite_outline_sharp),
-          ),
+        ValueListenableBuilder(
+          valueListenable:
+              FavoriteProductManager.favoriteProductBox.listenable(),
+          builder: (context, value, child) {
+            return GestureDetector(
+              onTap: () async {
+                // check product exist local DataBase
+                if (FavoriteProductManager.isInBox(items)) {
+                  await FavoriteProductManager.deletedProducts(items);
+                } else {
+                  await FavoriteProductManager.addProduct(items);
+                }
+              },
+              behavior: HitTestBehavior.opaque,
+              child: Container(
+                height: 35,
+                width: 35,
+                decoration: BoxDecoration(
+                  color: AppColors.kWhite,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                        color: AppColors.kGray100,
+                        blurRadius: 1,
+                        spreadRadius: 1)
+                  ],
+                ),
+                child: Icon(
+                  FavoriteProductManager.isInBox(items)
+                      ? Icons.favorite
+                      : Icons.favorite_outline_sharp,
+                  size: 20,
+                  color: FavoriteProductManager.isInBox(items)
+                      ? AppColors.kAlert500
+                      : AppColors.kGray800,
+                ),
+              ),
+            );
+          },
         )
       ],
     );

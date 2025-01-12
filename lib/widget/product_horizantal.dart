@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_shop/data/model/homw_model.dart';
+import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/widget/product_item.dart';
 
 class ProductHorizantal extends StatelessWidget {
