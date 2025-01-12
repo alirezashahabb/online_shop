@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_shop/data/local/favariot_product_manager.dart';
 import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/main.dart';
+import 'package:online_shop/screens/basket/bloc/basket_bloc.dart';
 import 'package:online_shop/screens/productDetail/bloc/prodcut_detail_bloc.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/widget/prodoct_detail_descreption.dart';
@@ -122,7 +123,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               return SizedBox(
                                 height: 75,
                                 child: ElevatedButton(
-                                  onPressed: value ? () {} : null,
+                                  onPressed: value
+                                      ? () {
+                                          BlocProvider.of<BasketBloc>(context)
+                                              .add(
+                                            BasketItemInit(
+                                              productId: widget.products.id!,
+                                            ),
+                                          );
+                                        }
+                                      : null,
                                   child: Text('افزودن به سبد خرید'),
                                 ),
                               );

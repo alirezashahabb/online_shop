@@ -4,25 +4,25 @@ import 'package:online_shop/data/model/payment_model.dart';
 import 'package:online_shop/utils/http_clinet.dart';
 
 class BasketService {
-  static Future<BasketModel> getAllBasket(BasketModel basket) async {
+  Future<BasketModel> getAllBasket(BasketModel basket) async {
     Response response = await httpClient.get('shopcarts');
 
     return BasketModel.fromJson(response.data);
   }
 
-  static Future<void> addBasket(int productId) async {
+  Future<void> addBasket(int productId) async {
     await httpClient.post('shopcarts/add-product/$productId');
   }
 
-  static Future<void> increaseCount(int productId) async {
+  Future<void> increaseCount(int productId) async {
     await httpClient.patch('shopcarts/$productId/increase-count');
   }
 
-  static Future<void> decreesCount(int productId) async {
+  Future<void> decreesCount(int productId) async {
     await httpClient.patch('shopcarts/$productId/decrease-count');
   }
 
-  static Future<void> removeProductsFromBasket(int productId) async {
+  Future<void> removeProductsFromBasket(int productId) async {
     await httpClient.post('shopcarts/remove-product/$productId');
   }
 

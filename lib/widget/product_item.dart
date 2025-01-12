@@ -1,9 +1,11 @@
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_shop/data/local/favariot_product_manager.dart';
 import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/main.dart';
+import 'package:online_shop/screens/basket/bloc/basket_bloc.dart';
 import 'package:online_shop/screens/productDetail/product_detal.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/image_loading_service.dart';
@@ -88,7 +90,11 @@ class ProductItem extends StatelessWidget {
                               backgroundColor: AppColors.kPrimary500,
                               radius: 18,
                               child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  BlocProvider.of<BasketBloc>(context).add(
+                                    BasketItemInit(productId: items.id!),
+                                  );
+                                },
                                 icon: Icon(
                                   Icons.add,
                                   color: AppColors.kWhite,

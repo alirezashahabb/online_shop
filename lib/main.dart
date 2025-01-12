@@ -4,10 +4,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_shop/data/model/home_model.dart';
 import 'package:online_shop/data/services/auth_service.dart';
+import 'package:online_shop/data/services/basket_service.dart';
 import 'package:online_shop/data/services/home_service.dart';
 import 'package:online_shop/data/services/product_service.dart';
 import 'package:online_shop/data/services/profile_service.dart';
 import 'package:online_shop/screens/auth/bloc/auth_bloc.dart';
+import 'package:online_shop/screens/basket/bloc/basket_bloc.dart';
 import 'package:online_shop/screens/comment/bloc/comment_bloc.dart';
 import 'package:online_shop/screens/home/bloc/home_bloc.dart';
 import 'package:online_shop/screens/product/PopularBloc/popular_bloc_bloc.dart';
@@ -69,6 +71,11 @@ void main() async {
       BlocProvider(
         create: (context) => ProfileBloc(
           ProfileService(),
+        ),
+      ),
+      BlocProvider(
+        create: (context) => BasketBloc(
+          BasketService(),
         ),
       ),
     ],

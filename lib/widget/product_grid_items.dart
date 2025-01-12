@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_shop/data/model/home_model.dart';
+import 'package:online_shop/screens/basket/bloc/basket_bloc.dart';
 import 'package:online_shop/screens/productDetail/product_detal.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/image_loading_service.dart';
@@ -75,7 +77,11 @@ class ProductGridItems extends StatelessWidget {
                     backgroundColor: AppColors.kPrimary500,
                     radius: 18,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        BlocProvider.of<BasketBloc>(context).add(
+                          BasketItemInit(productId: items.id!),
+                        );
+                      },
                       icon: Icon(
                         Icons.add,
                         size: 18,
