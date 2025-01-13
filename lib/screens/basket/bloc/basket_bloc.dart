@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:online_shop/data/model/basket_model.dart';
+import 'package:online_shop/data/model/payment_model.dart';
 import 'package:online_shop/data/services/basket_service.dart';
 
 part 'basket_event.dart';
@@ -65,6 +66,18 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
           } catch (e) {
             emit(
               BasketDeletedErrorState(error: 'خطانامشخص'),
+            );
+          }
+        }
+        //Payment
+        if (event is BasketPaymentProductEvent) {
+          emit(BasketPaymentLadingState());
+          try {
+            var response = await basketService.payment(event.paymentModel);
+            emit(BasketPaymentSuccessState(payment: response));
+          } catch (e) {
+            emit(
+              BasketPaymentErrorState(error: 'خطانامشخص'),
             );
           }
         }

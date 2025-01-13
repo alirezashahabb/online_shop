@@ -77,3 +77,21 @@ class BasketDeletedErrorState extends BasketState {
 }
 
 class BasketDeletedLoadingState extends BasketState {}
+
+// Payment
+
+class BasketPaymentLadingState extends BasketState {}
+
+class BasketPaymentSuccessState extends BasketState {
+  final String payment;
+  BasketPaymentSuccessState({
+    required this.payment,
+  });
+}
+
+class BasketPaymentErrorState extends BasketState {
+  final String error;
+  BasketPaymentErrorState({
+    required this.error,
+  });
+}

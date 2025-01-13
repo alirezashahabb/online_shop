@@ -41,3 +41,11 @@ class DeletedBasketInitEvent extends BasketEvent {
     required this.productId,
   });
 }
+
+// payment
+class BasketPaymentProductEvent extends BasketEvent {
+  final PaymentModel paymentModel;
+  BasketPaymentProductEvent({
+    required this.paymentModel,
+  });
+}
