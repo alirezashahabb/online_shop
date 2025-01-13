@@ -16,6 +16,8 @@ class BasketScreen extends StatefulWidget {
 }
 
 class _BasketScreenState extends State<BasketScreen> {
+  bool isFirstBuild = true;
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -38,14 +40,33 @@ class _BasketScreenState extends State<BasketScreen> {
             return BlocConsumer<BasketBloc, BasketState>(
               listener: (context, state) {
                 if (state is BasketSuccessState) {
-                  return showCustomAlert(
+                  showCustomAlert(
                     context,
                     'محصول با موفقیت به سبد خرید اضافه شد',
                   );
+                  BlocProvider.of<BasketBloc>(context).add(
+                    GetBasketInitEvent(),
+                  );
                 }
+                if (state is BasketDeletedSuccessState ||
+                    state is BasketIncrementSuccessState ||
+                    state is BasketDecrementSuccessState) {
+                  BlocProvider.of<BasketBloc>(context).add(
+                    GetBasketInitEvent(),
+                  );
+                }
+              },
+              buildWhen: (previous, current) {
+                if (current is GetBasketSuccessState ||
+                    current is GetBasketErrorState ||
+                    (current is GetBasketLoading && isFirstBuild)) {
+                  return true;
+                }
+                return false;
               },
               builder: (context, state) {
                 if (state is GetBasketSuccessState) {
+                  isFirstBuild = false;
                   return ListView.separated(
                       padding: EdgeInsets.fromLTRB(16, 16, 16, 50),
                       itemBuilder: (context, index) {
@@ -79,10 +100,21 @@ class _BasketScreenState extends State<BasketScreen> {
                                           style: themeData.textTheme.bodySmall,
                                         ),
                                       ),
-                                      Icon(
-                                        Icons.delete_outline,
-                                        color: AppColors.kGray500,
-                                      ),
+                                      IconButton(
+                                        alignment: Alignment.centerLeft,
+                                        padding: EdgeInsets.zero,
+                                        onPressed: () {
+                                          BlocProvider.of<BasketBloc>(context)
+                                              .add(
+                                            DeletedBasketInitEvent(
+                                                productId: products.productId!),
+                                          );
+                                        },
+                                        icon: Icon(
+                                          Icons.delete_outline,
+                                          color: AppColors.kGray500,
+                                        ),
+                                      )
                                     ],
                                   ),
                                   Row(
@@ -124,7 +156,15 @@ class _BasketScreenState extends State<BasketScreen> {
                                             backgroundColor:
                                                 AppColors.kPrimary500,
                                             child: IconButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                BlocProvider.of<BasketBloc>(
+                                                        context)
+                                                    .add(
+                                                  IncrementBasketInitEvent(
+                                                      productId:
+                                                          products.productId!),
+                                                );
+                                              },
                                               icon: Icon(
                                                 Icons.add,
                                                 color: AppColors.kWhite,
@@ -137,9 +177,22 @@ class _BasketScreenState extends State<BasketScreen> {
                                           ),
                                           CircleAvatar(
                                             radius: 18,
-                                            backgroundColor: AppColors.kGray150,
+                                            backgroundColor: products.count == 1
+                                                ? AppColors.kGray100
+                                                : AppColors.kGray200,
                                             child: IconButton(
-                                              onPressed: () {},
+                                              onPressed: products.count == 1
+                                                  ? null
+                                                  : () {
+                                                      BlocProvider.of<
+                                                                  BasketBloc>(
+                                                              context)
+                                                          .add(
+                                                        DecrementBasketInitEvent(
+                                                            productId: products
+                                                                .productId!),
+                                                      );
+                                                    },
                                               icon: Icon(
                                                 Icons.remove,
                                                 color: AppColors.kWhite,

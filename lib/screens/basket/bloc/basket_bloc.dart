@@ -17,7 +17,7 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
             await basketService.addBasket(event.productId);
             emit(BasketSuccessState());
           } catch (e) {
-            emit(BasketErrorState(error: ''));
+            emit(BasketErrorState(error: 'خطل نامشخص'));
           }
         }
         // Get Basket
@@ -31,7 +31,41 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
               ),
             );
           } catch (e) {
-            emit(GetBasketErrorState(error: 'خطا نا مشخص'));
+            emit(GetBasketErrorState(error: 'خطانامشخص'));
+          }
+        }
+        //Increment
+        if (event is IncrementBasketInitEvent) {
+          emit(BasketIncrementLoadingState());
+          try {
+            await basketService.increaseCount(event.productId);
+            emit(BasketIncrementSuccessState());
+          } catch (e) {
+            emit(BasketIncrementErrorState(error: 'خطانامشخص'));
+          }
+        }
+        //Decrement
+        if (event is DecrementBasketInitEvent) {
+          emit(BasketDecrementLoadingState());
+          try {
+            await basketService.decreesCount(event.productId);
+            emit(BasketDecrementSuccessState());
+          } catch (e) {
+            emit(
+              BasketDecrementErrorState(error: 'خطانامشخص'),
+            );
+          }
+        }
+        //deleted
+        if (event is DeletedBasketInitEvent) {
+          emit(BasketDeletedLoadingState());
+          try {
+            await basketService.removeProductsFromBasket(event.productId);
+            emit(BasketDeletedSuccessState());
+          } catch (e) {
+            emit(
+              BasketDeletedErrorState(error: 'خطانامشخص'),
+            );
           }
         }
       },

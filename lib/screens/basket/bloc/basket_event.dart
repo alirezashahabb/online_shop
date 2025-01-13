@@ -12,3 +12,32 @@ class BasketItemInitEvent extends BasketEvent {
 // Get Basket Items
 
 class GetBasketInitEvent extends BasketEvent {}
+
+// Increment
+
+class IncrementBasketInitEvent extends BasketEvent {
+  final int productId;
+
+  IncrementBasketInitEvent({
+    required this.productId,
+  });
+}
+
+//Decrement
+class DecrementBasketInitEvent extends BasketEvent {
+  final int productId;
+
+  DecrementBasketInitEvent({
+    required this.productId,
+  });
+}
+
+//deleted
+
+class DeletedBasketInitEvent extends BasketEvent {
+  final int productId;
+
+  DeletedBasketInitEvent({
+    required this.productId,
+  });
+}

@@ -35,3 +35,45 @@ class GetBasketErrorState extends BasketState {
     required this.error,
   });
 }
+
+//Increment
+
+class BasketIncrementSuccessState extends BasketState {}
+
+class BasketIncrementErrorState extends BasketState {
+  final String error;
+
+  BasketIncrementErrorState({
+    required this.error,
+  });
+}
+
+class BasketIncrementLoadingState extends BasketState {}
+
+//Decrement
+
+class BasketDecrementSuccessState extends BasketState {}
+
+class BasketDecrementErrorState extends BasketState {
+  final String error;
+
+  BasketDecrementErrorState({
+    required this.error,
+  });
+}
+
+class BasketDecrementLoadingState extends BasketState {}
+
+//delete BasketItems
+
+class BasketDeletedSuccessState extends BasketState {}
+
+class BasketDeletedErrorState extends BasketState {
+  final String error;
+
+  BasketDeletedErrorState({
+    required this.error,
+  });
+}
+
+class BasketDeletedLoadingState extends BasketState {}
