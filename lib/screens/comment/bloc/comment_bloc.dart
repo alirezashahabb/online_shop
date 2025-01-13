@@ -17,7 +17,9 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
           emit(CommentSuccessState());
         } catch (e) {
           emit(
-            CommentErrorState(error: 'خطانامشخص'),
+            CommentErrorState(
+              error: e.toString(),
+            ),
           );
         }
       }

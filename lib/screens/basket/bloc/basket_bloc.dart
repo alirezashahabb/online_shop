@@ -18,7 +18,11 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
             await basketService.addBasket(event.productId);
             emit(BasketSuccessState());
           } catch (e) {
-            emit(BasketErrorState(error: 'خطل نامشخص'));
+            emit(
+              BasketErrorState(
+                error: e.toString(),
+              ),
+            );
           }
         }
         // Get Basket
@@ -32,7 +36,9 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
               ),
             );
           } catch (e) {
-            emit(GetBasketErrorState(error: 'خطانامشخص'));
+            emit(GetBasketErrorState(
+              error: e.toString(),
+            ));
           }
         }
         //Increment
@@ -42,7 +48,9 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
             await basketService.increaseCount(event.productId);
             emit(BasketIncrementSuccessState());
           } catch (e) {
-            emit(BasketIncrementErrorState(error: 'خطانامشخص'));
+            emit(BasketIncrementErrorState(
+              error: e.toString(),
+            ));
           }
         }
         //Decrement
@@ -53,7 +61,9 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
             emit(BasketDecrementSuccessState());
           } catch (e) {
             emit(
-              BasketDecrementErrorState(error: 'خطانامشخص'),
+              BasketDecrementErrorState(
+                error: e.toString(),
+              ),
             );
           }
         }
@@ -65,7 +75,9 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
             emit(BasketDeletedSuccessState());
           } catch (e) {
             emit(
-              BasketDeletedErrorState(error: 'خطانامشخص'),
+              BasketDeletedErrorState(
+                error: e.toString(),
+              ),
             );
           }
         }
@@ -77,7 +89,9 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
             emit(BasketPaymentSuccessState(payment: response));
           } catch (e) {
             emit(
-              BasketPaymentErrorState(error: 'خطانامشخص'),
+              BasketPaymentErrorState(
+                error: e.toString(),
+              ),
             );
           }
         }

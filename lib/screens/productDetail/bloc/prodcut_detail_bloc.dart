@@ -19,7 +19,9 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
           );
         } catch (e) {
           emit(
-            ProductDetailErrorState(error: 'خطانامشخص'),
+            ProductDetailErrorState(
+              error: e.toString(),
+            ),
           );
         }
       }

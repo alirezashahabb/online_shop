@@ -38,7 +38,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             );
           } catch (e) {
             emit(
-              UserPaymentError(error: 'خطا نا مشخص'),
+              UserPaymentError(
+                error: e.toString(),
+              ),
             );
           }
         }

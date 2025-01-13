@@ -37,7 +37,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             );
           } catch (e) {
             emit(
-              AuthLoginErrorState(error: 'خطایی رخ داده هست'),
+              AuthLoginErrorState(
+                error: e.toString(),
+              ),
             );
           }
         }
@@ -51,7 +53,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(AuthSignUpSuccess());
           } catch (e) {
             emit(
-              AuthLoginErrorState(error: 'خطایی رخ داده هست'),
+              AuthLoginErrorState(
+                error: e.toString(),
+              ),
             );
           }
         }

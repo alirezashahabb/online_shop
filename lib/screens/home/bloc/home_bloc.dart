@@ -26,7 +26,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           );
         } catch (e) {
           emit(
-            HomeErrorState(error: 'خطا نامشخص'),
+            HomeErrorState(
+              error: e.toString(),
+            ),
           );
         }
       }

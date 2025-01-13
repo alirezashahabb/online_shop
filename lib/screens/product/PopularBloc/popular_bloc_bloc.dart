@@ -17,7 +17,9 @@ class PopularBloc extends Bloc<PopularBlocEvent, PopularBlocState> {
           emit(PopularProductSuccessSate(productModel: response));
         } catch (e) {
           emit(
-            PopularProductErrorSate(error: 'خطانامشخص'),
+            PopularProductErrorSate(
+              error: e.toString(),
+            ),
           );
         }
       }

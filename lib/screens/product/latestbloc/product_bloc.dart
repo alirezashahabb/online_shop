@@ -19,7 +19,9 @@ class ProductLatestBloc extends Bloc<ProductEvent, ProductState> {
             emit(ProductLatestSuccessState(productModel: response));
           } catch (e) {
             emit(
-              ProductLatestErrorState(error: 'خطانامشخص'),
+              ProductLatestErrorState(
+                error: e.toString(),
+              ),
             );
           }
         }

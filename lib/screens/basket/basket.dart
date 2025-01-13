@@ -1,9 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:async';
+
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_shop/main.dart';
 import 'package:online_shop/screens/basket/bloc/basket_bloc.dart';
 import 'package:online_shop/screens/guest_screen.dart';
+import 'package:online_shop/screens/profile/bloc/profile_bloc.dart';
 import 'package:online_shop/them.dart';
 import 'package:online_shop/utils/image_loading_service.dart';
 import 'package:online_shop/utils/snack_bar.dart';
@@ -20,9 +26,35 @@ class BasketScreen extends StatefulWidget {
 class _BasketScreenState extends State<BasketScreen> {
   bool isFirstBuild = true;
 
+  StreamSubscription? sub;
+
+  final appLinks = AppLinks();
+  @override
+  void initState() {
+    sub = appLinks.uriLinkStream.listen((event) {
+      if (event == 'vesam://success_payment') {
+        print('salam');
+        showCustomAlert(context, 'پرداخت با موفقیت انجام شد');
+        Navigator.pop(context);
+        BlocProvider.of<BasketBloc>(context).add(
+          GetBasketInitEvent(),
+        );
+        BlocProvider.of<ProfileBloc>(context).add(UserPaymentInitEvent());
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    sub!.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -284,3 +316,6 @@ class _BasketScreenState extends State<BasketScreen> {
     );
   }
 }
+
+
+// &&
