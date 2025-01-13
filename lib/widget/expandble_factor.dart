@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:online_shop/data/model/basket_model.dart';
+import 'package:online_shop/screens/basket/payment.dart';
 import 'package:online_shop/them.dart';
+import 'package:online_shop/utils/navigator.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class ExpandableFactor extends StatefulWidget {
@@ -125,7 +127,12 @@ class _ExpandableFactorState extends State<ExpandableFactor> {
                 margin: EdgeInsets.only(top: 8),
                 width: MediaQuery.sizeOf(context).width,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    goScreen(
+                      context: context,
+                      screen: PayMentScreen(),
+                    );
+                  },
                   child: Text('تکمیل خرید'),
                 ),
               )
