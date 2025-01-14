@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -35,6 +36,13 @@ void main() async {
 
   prefs = await SharedPreferences.getInstance();
   isLogin.value = prefs.getString('token') != null;
+
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  );
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
@@ -90,6 +98,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: TextScaler.linear(1),
+          ),
+          child: child as Widget,
+        );
+      },
       key: navigatorKey,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
